@@ -1,35 +1,30 @@
-import React, { Fragment, Component } from "react";
+import React, { useState } from "react";
 
-class Search extends Component {
-  state = {
-    text: ""
+const Search = ({ searchUsers, showClear, clearUsers, setAlert }) => {
+  const [text, setText] = useState('');
+
+  const handleChange = e => {
+    setText(e.target.value)
   };
 
-  handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    if (this.state.text === "") {
-      this.props.setAlert("Please enter something", "light");
+    if (text === "") {
+      setAlert("Please enter something", "light");
     } else {
-      this.props.searchUsers(this.state.text);
-      this.setState({ text: "" });
+      searchUsers(text);
+      setText('');
     }
   };
 
-  render() {
-    const { showClear, clearUsers } = this.props;
-
     return (
-      <Fragment>
-        <form className="form" onSubmit={this.handleSubmit}>
+      <div>
+        <form className="form" onSubmit={handleSubmit}>
           <input
             type="text"
             name="text"
-            value={this.state.text}
-            onChange={this.handleChange}
+            value={text}
+            onChange={handleChange}
             placeholder="Search Users.."
           />
           <input
@@ -43,9 +38,8 @@ class Search extends Component {
             Clear
           </button>
         )}
-      </Fragment>
+      </div>
     );
-  }
 }
 
 export default Search;
