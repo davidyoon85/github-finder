@@ -1,4 +1,4 @@
-Github-finder
+## Github-finder
 
 User will be able to search github by username to see a user profile summary.
 
