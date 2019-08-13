@@ -1,2 +1,2 @@
-##Github-finder
-###Created using create-react-app, react context API
+Github-finder
+Created using create-react-app, react context API
